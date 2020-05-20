@@ -11,31 +11,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api_one', require('./api_one'));
 
 
-var fs=require("fs");
-
-function processRoutePath(routePath, currentLevel, maxLevel){
-  if (currentLevel > maxLevel){
-    return;
-  }
-  else{
-      fs.readdirSync(routePath).forEach(function(file) {
-      var filepath = routePath + '/' + file;
-      var stat= fs.statSync(filepath);
-      if (stat.isDirectory()) {            
-            processRoutePath(filepath, currentLevel+1, maxLevel);
-      } else {
-            if (file == 'index.js'){
-              app.use(routePath.substring(1), require(routePath));
-            }            
-        }    
-  });
-  }
-}
-
-var route="./api_two"; 
-processRoutePath(route,0,1);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

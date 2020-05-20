@@ -5,8 +5,8 @@ router.get('/', function(req, res, next) {
   res.send('Hello v1.0 GET API for api_one');
 });
 
-router.get('/aa', function(req, res, next) {
-  res.send('Hexxxxxxxxxxxxapi_one');
+router.get('/user', function(req, res, next) {
+  res.send('Here is v1.0 user details');
 });
 
 router.post('/', function(req, res, next) {
